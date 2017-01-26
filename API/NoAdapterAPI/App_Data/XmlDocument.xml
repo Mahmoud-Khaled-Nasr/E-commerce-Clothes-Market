@@ -1,0 +1,1227 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NoAdapterAPI</name>
+    </assembly>
+    <members>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:NoAdapterAPI.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:NoAdapterAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,NoAdapterAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,NoAdapterAPI.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:NoAdapterAPI.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},NoAdapterAPI.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(NoAdapterAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,NoAdapterAPI.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:NoAdapterAPI.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NoAdapterAPI.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:NoAdapterAPI.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.Database.DatabaseController">
+            <summary>
+            Database Logic Controller
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.Database.DatabaseController.Initiate">
+            <summary>
+            Initiates The Database Connection
+            </summary>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.Database.DatabaseController.Terminate">
+            <summary>
+            Terminates The Database Connection
+            </summary>
+            <returns>Nothing</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.BranchController">
+            <summary>
+            Logic Controller for Branch class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchController.Get">
+            <summary>
+            Gets ALL Branches from the Database
+            </summary>
+            <returns>a List of Branches</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchController.Get(System.Int32)">
+            <summary>
+            Gets a Branch with a specific Name
+            </summary>
+            <param name="BranchID"></param>
+            <returns>Branch with this Name or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchController.Post(NoAdapterAPI.Models.Branch)">
+            <summary>
+            Adds a Branch
+            </summary>
+            <param name="temp">Branch Data to Add</param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchController.Put(System.Int32,NoAdapterAPI.Models.Branch)">
+            <summary>
+            Edits a Branch with This Name
+            </summary>
+            <param name="BranchID">Branch Name</param>
+            <param name="temp">Branch Data</param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchController.Delete(System.Int32)">
+            <summary>
+            Delets a Branch with This Name
+            </summary>
+            <param name="BranchID"></param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchController.Check(System.Int32)">
+            <summary>
+            Checks if a Branch exists
+            </summary>
+            <param name="BranchID">Branch Name</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchWindowController.Get(System.Int32)">
+            <summary>
+            ALL BRANCH DATA
+            </summary>
+            <param name="BranchID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchWindowController.Post(System.Int32)">
+            <summary>
+            Products in Branch
+            </summary>
+            <param name="BranchID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchWindowController.Put(System.Int32)">
+            <summary>
+            Employee Working Place ID
+            </summary>
+            <param name="WorkingPlaceID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BranchWindowController.Delete(System.Int32)">
+            <summary>
+            Count
+            </summary>
+            <param name="BranchID"></param>
+            <returns>Product, Employee</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.BrandController">
+            <summary>
+            Logic Controller for Brand class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BrandController.Get">
+            <summary>
+            Gets ALL Brands from the Database
+            </summary>
+            <returns>a List of Brands</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BrandController.Get(System.String)">
+            <summary>
+            Gets Brand with a specific Name
+            </summary>
+            <param name="BrandName"></param>
+            <returns>Brand with this Name or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BrandController.Post(NoAdapterAPI.Models.Brand)">
+            <summary>
+            Adds a Brand
+            </summary>
+            <param name="temp">Brand Data to Add</param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BrandController.Put(System.String,NoAdapterAPI.Models.Brand)">
+            <summary>
+            Edits a Brand with This Name
+            </summary>
+            <param name="BrandName">Brand Name</param>
+            <param name="temp">Brand Data</param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BrandController.Delete(System.String)">
+            <summary>
+            Delets a Brand with This Name
+            </summary>
+            <param name="BrandName"></param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.BrandController.Check(System.String)">
+            <summary>
+            Checks if a Brand exists
+            </summary>
+            <param name="BrandName">Brand Name</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.CategoryController">
+            <summary>
+            Logic Controller for Category class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CategoryController.Get">
+            <summary>
+            Gets ALL Categories from the Database
+            </summary>
+            <returns>a List of Categories</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CategoryController.Get(System.Int32)">
+            <summary>
+            Gets Category with a specific Name
+            </summary>
+            <param name="CategoryID"></param>
+            <returns>Category with this Name or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CategoryController.Post(NoAdapterAPI.Models.Category)">
+            <summary>
+            Adds a Category
+            </summary>
+            <param name="temp">Category Data to Add</param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CategoryController.Put(System.Int32,NoAdapterAPI.Models.Category)">
+            <summary>
+            Edits a Category with This Name
+            </summary>
+            <param name="CategoryID">Category Name</param>
+            <param name="temp">Category Data</param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CategoryController.Delete(System.Int32)">
+            <summary>
+            Delets a Category with This Name
+            </summary>
+            <param name="CategoryID"></param>
+            <returns>A number more than ZERO if successful and -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CategoryController.Check(System.Int32)">
+            <summary>
+            Checks if a Category exists
+            </summary>
+            <param name="CategoryID">Category Name</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.CustomerController">
+            <summary>
+            Logic Controller for Customer Class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.Get">
+            <summary>
+            Gets ALL Customers from the Database
+            </summary>
+            <returns>A List of Customer Objects</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.Get(System.String)">
+            <summary>
+            Gets the Customer Corrosponding to this ID 
+            </summary>
+            <param name="CustomerID">Customer ID</param>
+            <returns>Customer with this ID or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.Post(NoAdapterAPI.Models.Customer)">
+            <summary>
+            Inserts a new Customer
+            </summary>
+            <param name="temp">Customer data from the Request Body</param>
+            <returns>A number more than ZERO if successful or -1 if failed(SSN Already Exists)</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.Put(System.String,NoAdapterAPI.Models.Customer)">
+            <summary>
+            Edit Customer Data Except ID
+            </summary>
+            <param name="CustomerID">ID of Customer to edit</param>
+            <param name="temp">New Data</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.Count">
+            <summary>
+            Gets The Count in the database
+            </summary>
+            <returns>Integer</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.Delete(System.Int32)">
+            <summary>
+            Deletes a Customer
+            </summary>
+            <param name="CustomerID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.CustomerController.check(System.String,System.String)">
+            <summary>
+            Gets Customer based on Username and Password
+            </summary>
+            <param name="Username">Customer's Username</param>
+            <param name="Password">Customer's Password</param>
+            <returns>Customer Matching this Username and Password or null if none exist</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.EmployeeController">
+            <summary>
+            Logic Controller for Employee Class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.EmployeeController.Get">
+            <summary>
+            Gets ALL Employees from the Database
+            </summary>
+            <returns>A List of Employee Objects</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.EmployeeController.Get(System.Int32)">
+            <summary>
+            Gets an Employee with This ID
+            </summary>
+            <param name="EmployeeID">Employee ID</param>
+            <returns>Employee with this ID or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.EmployeeController.Post(NoAdapterAPI.Models.Employee)">
+            <summary>
+            Adds an Employee to the Database
+            </summary>
+            <param name="temp">Employee Data to Add</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.EmployeeController.Put(System.Int32,NoAdapterAPI.Models.Employee)">
+            <summary>
+            Updates an Employee
+            </summary>
+            <param name="EmployeeID">EmployeeId to Update</param>
+            <param name="temp">Employee Data</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.EmployeeController.Delete(System.Int32)">
+            <summary>
+            Deletes an Employee
+            </summary>
+            <param name="EmployeeID">ID to Delete</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.EmployeeController.Check(System.Int32)">
+            <summary>
+            Checks if an Employee Exists
+            </summary>
+            <param name="EmployeeID">Employee ID to Delete</param>
+            <returns></returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.OrderController">
+            <summary>
+            Logic Controller for Order Class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.Get">
+            <summary>
+            Gets ALL Orders from the Database
+            </summary>
+            <returns>A List of Order Objects</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.Get(System.Int32)">
+            <summary>
+            Gets the Order Corrosponding to this ID 
+            </summary>
+            <param name="OrderID">Order ID</param>
+            <returns>Order with this ID or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.Post(NoAdapterAPI.Models.Order)">
+            <summary>
+            Starts a new Order //Note: This Only Starts the Order.... to add Products, Call the PUT method.
+            </summary>
+            <param name="temp">Order data from the Request Body</param>
+            <returns>Order ID to add Products to</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.Put(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Adds a Product to an Order
+            </summary>
+            <param name="OrderID">Order ID to add the Product to</param>
+            <param name="BarCode">Product Barcode</param>
+            <param name="Quantity">Quantity of The Prodct</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.Delete(System.Int32)">
+            <summary>
+            Deletes an Order
+            </summary>
+            <param name="OrderID">OrderID to delete</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.check(System.Int32)">
+            <summary>
+            Check if an Order exists
+            </summary>
+            <param name="OrderID">OrderID to check</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.OrderController.Count">
+            <summary>
+            Gets The Count in the database
+            </summary>
+            <returns>Integer</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.ProductController">
+            <summary>
+            Logic Controller for Product Class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Get">
+            <summary>
+            Gets ALL Products from the Database
+            </summary>
+            <returns>A List of Product Objects</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Get(System.Int32)">
+            <summary>
+            Gets Product by Barcode
+            </summary>
+            <param name="BarCode">Product's Barcode</param>
+            <returns>Product with this Barcode or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Post(NoAdapterAPI.Models.Product)">
+            <summary>
+            Inserts a Product
+            </summary>
+            <param name="temp">Product Data</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Put(System.Int32,NoAdapterAPI.Models.Product)">
+            <summary>
+            Updates a Product
+            </summary>
+            <param name="BarCode">Barcode to Update</param>
+            <param name="temp">Data</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Delete(System.Int32)">
+            <summary>
+            Deletes a Product
+            </summary>
+            <param name="BarCode">Barcode to Delete</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Check(System.Int32)">
+            <summary>
+            Checks if a Product Exists
+            </summary>
+            <param name="BarCode">Product to Check</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.ProductController.Count">
+            <summary>
+            Gets The Count in the database
+            </summary>
+            <returns>Integer</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Controllers.ModelContollers.SeasonController">
+            <summary>
+            Logic Controller for Season Class
+            </summary>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.SeasonController.Get">
+            <summary>
+            Gets ALL Seasons from the Database
+            </summary>
+            <returns>A List of Season Objects</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.SeasonController.Get(System.String)">
+            <summary>
+            Gets the Season with this ID
+            </summary>
+            <param name="SeasonName">Season Name</param>
+            <returns>Season Object with this ID or null if none exists</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.SeasonController.Post(NoAdapterAPI.Models.Season)">
+            <summary>
+            Adds a Season
+            </summary>
+            <param name="temp">Season data to add</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.SeasonController.Put(System.String,NoAdapterAPI.Models.Season)">
+            <summary>
+            Edits a Season
+            </summary>
+            <param name="SeasonName">Season Name to Edit</param>
+            <param name="temp">Season Data</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.SeasonController.Delete(System.String)">
+            <summary>
+            Deletes a Season
+            </summary>
+            <param name="SeasonName">Season Name to Delete</param>
+            <returns>A number more than ZERO if successful or -1 if failed</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Controllers.ModelContollers.SeasonController.check(System.String)">
+            <summary>
+            Checks if a Season exists or not
+            </summary>
+            <param name="SeasonName">Season Name to Check</param>
+            <returns>Boolean</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Models.DatabaseManager.InitiateConnection">
+            <summary>
+            Initiates the Database Connection based on the ConnectionString Named "DatabaseAdaptedModel"
+            </summary>
+            <returns>A Boolean to indicate if Connection Succeded</returns>
+            <remarks>Throws Data to Log File</remarks>
+        </member>
+        <member name="M:NoAdapterAPI.Models.DatabaseManager.ExecuteNonQuery(System.String)">
+            <summary>
+            Executes Update, Insert, Delete Queries
+            </summary>
+            <param name="Query">Transact-SQL Query String</param>
+            <returns>Amount of Rows Affected</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Models.DatabaseManager.ExecuteReader(System.String)">
+            <summary>
+            Executes Reader Command using The Transact-SQL Query
+            </summary>
+            <param name="Query">The Transact-SQL Query String</param>
+            <returns>Datatable Containing the Result of the Select Query</returns>
+        </member>
+        <member name="M:NoAdapterAPI.Models.DatabaseManager.ExecuteScalar(System.String)">
+            <summary>
+             Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.        
+            </summary>
+            <param name="Query">The Transact-SQL Query String</param>
+            <returns>
+            The first column of the first row in the result set, or a null reference if the result set is empty. Returns a maximum of 2033 characters.
+            </returns>
+        </member>
+        <member name="M:NoAdapterAPI.Models.DatabaseManager.CloseConnection">
+            <summary>
+            Closes The SQL Server Connection
+            </summary>
+            <returns>A Boolean to indicate if Connection Termination Succeded</returns>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Branch">
+            <summary>
+            Branch Entity
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Branch.BranchID">
+            <summary>
+            Branch ID
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Branch.Sales">
+            <summary>
+            Branch Yearly Sales
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Branch.Profit">
+            <summary>
+            Branch Annual Profit
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Branch.ProductListID">
+            <summary>
+            Productss in the Branch
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Brand">
+            <summary>
+            Product's Brand
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Brand.BrandName">
+            <summary>
+            Brand's Official Name (20)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Brand.GenderSales">
+            <summary>
+            M, F or B only
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Brand.Description">
+            <summary>
+            a 100-char Description
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Category">
+            <summary>
+            Categories
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Category.CategoryID">
+            <summary>
+            Category ID (Auto-generated)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Category.CategoryName">
+            <summary>
+            Name of The Category
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Customer">
+            <summary>
+            Customer Data
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.CustomerID">
+            <summary>
+            The ID of the Customer (Auto-generated)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.UserName">
+            <summary>
+            Login Username
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.Password">
+            <summary>
+            Login Password
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.SSN">
+            <summary>
+            Social Security Number String of (14) (Unique)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.Name">
+            <summary>
+            Actual Name
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.Gender">
+            <summary>
+            M or F only
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Customer.Age">
+            <summary>
+            Age
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Employee">
+            <summary>
+            Employee Class
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.EmployeeID">
+            <summary>
+            EmployeeID (Auto-generated)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.SSN">
+            <summary>
+            SSN
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.Name">
+            <summary>
+            Employee Full Name
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.Gender">
+            <summary>
+            M or F only
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.BaseSalary">
+            <summary>
+            Employee Base Salary
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.Extra">
+            <summary>
+            Extra Salary
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.Classification">
+            <summary>
+            Manger, Cashier, Accountant or Delivery only
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.PhoneNumber">
+            <summary>
+            Employee Phone Number
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.Address">
+            <summary>
+            Employee Address
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.WorkingHours">
+            <summary>
+            Working Hours
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.WorkingAt">
+            <summary>
+            Working At
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Employee.SupervisorID">
+            <summary>
+            Supervisor ID
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Order">
+            <summary>
+            An Order done by a Customer
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Order.OrderID">
+            <summary>
+            Order of ID (Auto-generated)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Order.CustomerID">
+            <summary>
+            ID of Customer (Foreign)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Order.ProductListID">
+            <summary>
+            ID of Order's Products' deatils (Foreign)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Order.WarehouseID">
+            <summary>
+            ID of Warehouse to address Order (Foreign)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Order.DeliveryID">
+            <summary>
+            ID of Delivery Department/Employee (Foreign)
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Product">
+            <summary>
+            Products' Data
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.BarCode">
+            <summary>
+            Product's Barcode....(Auto-generated)
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.Size">
+            <summary>
+            Size
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.Color">
+            <summary>
+            Color
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.Gender">
+            <summary>
+            Gender..... M or F Only
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.ProductStatus">
+            <summary>
+            Stored....OnSale.....NotAvailable only
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.Image">
+            <summary>
+            Product's Image.... Byte[]
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.CategoryID">
+            <summary>
+            Category ID
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Product.BrandName">
+            <summary>
+            Brand Name
+            </summary>
+        </member>
+        <member name="T:NoAdapterAPI.Models.Season">
+            <summary>
+            Season Class
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Season.SeasonName">
+            <summary>
+            Season Name
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Season.StartDate">
+            <summary>
+            Start Date
+            </summary>
+        </member>
+        <member name="P:NoAdapterAPI.Models.Season.EndDate">
+            <summary>
+            End Date
+            </summary>
+        </member>
+    </members>
+</doc>
